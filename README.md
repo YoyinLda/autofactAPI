@@ -21,6 +21,7 @@
 POST: http://localhost:3000/api/preguntas
 
 request:  
+
 1. ERROR: { "resp1":"Texto de repuesta 1","resp2":"si","resp3": 55,"userId":1 }
 2. EXITO: { "resp1":"Texto de repuesta 1","resp2":"si","resp3": 1,"userId":1 }
 
