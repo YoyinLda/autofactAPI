@@ -1,0 +1,62 @@
+image: ajrrac/alpine-node-awscli-ebcli:latest
+
+infoStep: &infoStep
+  - step:
+      name: Info
+      script:
+        - node --version
+        - npm --version
+        - eb --version
+
+prepareStep: &prepareStep
+  - step:
+      name: Prepare
+      script:
+        - npm install
+      artifacts:
+        - node_modules/**
+
+securityStep: &securityStep
+  - step:
+      name: Security
+      script:
+        - npm audit
+
+buildStep: &buildStep
+  - step:
+      name: Build
+      script:
+        - npm run build
+      artifacts:
+        - dist/**
+        - build/**
+
+deployAwsScript: &deployAwsScript
+  script:
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile default
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile default
+    - aws configure set region $AWS_DEFAULT_REGION --profile default
+    - eb deploy $AWS_ENVIRONMENT_NAME
+
+pipelines:    
+  branches:
+    test:
+      - <<: *infoStep
+      - <<: *prepareStep
+#     - <<: *securityStep
+      - <<: *buildStep
+      - step:
+          name: Deploy to test
+          deployment: test
+          <<: *deployAwsScript
+    master:
+      - <<: *infoStep
+      - <<: *prepareStep
+#     - <<: *securityStep
+      - <<: *buildStep
+      - step:
+          name: Deploy to production
+          trigger: manual
+          deployment: production
+          <<: *deployAwsScript
+

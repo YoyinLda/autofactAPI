@@ -1,29 +1,41 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Prueba 2 Postulacion Autofact ###
 
-### What is this repository for? ###
+### Intalacion y ejecución ###
+1.- Ejecutar DUMP contenido en proyecto autofactDB en MySql
+  * El sql, se encuentra con un usuario de prueba
+2.- Renombrar .env.example por .env
+3.- Confirmar Nombre de BD en .env
+4.- Ejecutar npm install
+5.- Ejecutar npm run dev
+6.- Importar a Postman autofact.postman_collection.json
+  * Coleccion contiene los 2 enpoint necesarios
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Consumir API ###
 
-### Contribution guidelines ###
+Endpoint
 
-* Writing tests
-* Code review
-* Other guidelines
+Agregar Respuestas de un usuario
+POST: http://localhost:3000/api/preguntas
 
-### Who do I talk to? ###
+request: 
+*ERROR: {
+    "resp1":"Texto de repuesta 1",
+    "resp2":"si",
+    "resp3": 55,
+    "userId":1
+  }
 
-* Repo owner or admin
-* Other community or team contact
+*EXITO: {
+  "resp1":"Texto de repuesta 1",
+    "resp2":"no",
+    "resp3": 5,
+    "userId":1
+}
+
+Obtener todas las respuestas de un usuario ordenadas desde las mas nueva a la mas antigua
+
+GET: http://localhost:3000/api/preguntas/1
