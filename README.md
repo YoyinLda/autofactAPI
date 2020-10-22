@@ -23,20 +23,10 @@ POST: http://localhost:3000/api/preguntas
 
 request:  
 - ERROR:  
-  {
-    "resp1":"Texto de repuesta 1",
-    "resp2":"si",
-    "resp3": 55,
-    "userId":1
-  }
+  { "resp1":"Texto de repuesta 1","resp2":"si","resp3": 55,"userId":1 }
 
 - EXITO:  
-{
-  "resp1":"Texto de repuesta 1",
-    "resp2":"no",
-    "resp3": 5,
-    "userId":1
-}
+  { "resp1":"Texto de repuesta 1","resp2":"si","resp3": 1,"userId":1 }
 
 Obtener todas las respuestas de un usuario ordenadas desde las mas nueva a la mas antigua
 
